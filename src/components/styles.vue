@@ -5,6 +5,7 @@
     <fontSize :styles="styles" @change="change" v-show="styleModules.includes('font-size')"></fontSize>
     <Color :styles="styles" @change="change" v-show="styleModules.includes('color')"></Color>
     <backgroundColor :styles="styles" @change="change" v-show="styleModules.includes('background-color')"></backgroundColor>
+    <fontStyles :styles="styles" @change="change" v-show="styleModules.includes('font-styles')"></fontStyles>
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import Padding from './styles/padding.vue';
 import fontSize from './styles/font-size.vue';
 import Color from './styles/color.vue';
 import backgroundColor from './styles/background-color.vue';
+import fontStyles from './styles/font-styles.vue';
 import settings from '@/settings'
 export default {
   data () {
@@ -48,14 +50,18 @@ export default {
     },
 
     change (key, value) {
-      this.styles[key] = value;
+      if (value) {
+        this.styles[key] = value;
+      } else {
+        delete this.styles[key];
+      }
       this.json.attrs.style = json2style(this.styles);
       this.$emit('update', this.json, this.focus);
     },
   },
 
   components: {
-    Margin, Padding, fontSize, Color, backgroundColor
+    Margin, Padding, fontSize, Color, backgroundColor, fontStyles
   }
 }
 </script>
