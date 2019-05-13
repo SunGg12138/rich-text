@@ -46,6 +46,9 @@ export default {
         case 'img':
           this.editComponent = 'ImgEditor';
           break;
+        case 'imgs':
+          this.editComponent = 'ImgsEditor';
+          break;
       }
     },
     // 删除当前模块
@@ -57,6 +60,7 @@ export default {
   components: {
     TextEditor: () => import('./editors/text.vue'),
     ImgEditor: () => import('./editors/img.vue'),
+    ImgsEditor: () => import('./editors/imgs.vue'),
   }
 }
 </script>

@@ -14,6 +14,10 @@
           <i class="icon icon-image"></i>
           <div>图片</div>
         </td>
+        <td @click="add('imgs')">
+          <i class="icon icon-images"></i>
+          <div>图片组</div>
+        </td>
       </tr>
     </table>
   </div>
