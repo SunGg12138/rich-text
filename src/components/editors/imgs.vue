@@ -2,10 +2,10 @@
   <div>
     <Iframe>
       <div class="editor-title">图片地址：</div>
-      <el-input v-model="src1"><template slot="prepend">图1</template></el-input>
-      <el-input v-model="src2"><template slot="prepend">图2</template></el-input>
-      <el-input v-model="src3"><template slot="prepend">图3</template></el-input>
-      <el-input v-model="src4"><template slot="prepend">图4</template></el-input>
+      <el-input v-model="src1" class="el-input-img" style="margin-bottom: 4px;"><template slot="prepend">图1</template></el-input>
+      <el-input v-model="src2" class="el-input-img" style="margin-bottom: 4px;"><template slot="prepend">图2</template></el-input>
+      <el-input v-model="src3" class="el-input-img" style="margin-bottom: 4px;"><template slot="prepend">图3</template></el-input>
+      <el-input v-model="src4" class="el-input-img"><template slot="prepend">图4</template></el-input>
     </Iframe>
   </div>
 </template>

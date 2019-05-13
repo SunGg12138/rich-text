@@ -2,7 +2,7 @@
   <div>
     <Iframe>
       <div class="editor-title">图片地址：</div>
-      <el-input v-model="src"></el-input>
+      <el-input class="el-input-img" v-model="src"></el-input>
     </Iframe>
   </div>
 </template>
@@ -54,5 +54,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.el-input-img .el-input__inner {
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 8px;
+}
 </style>

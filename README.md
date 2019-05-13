@@ -10,7 +10,7 @@
 
 ## 规划
 
-- 更多组件，例如：图片列表、链接等
-- 支持更多style编辑，例如：padding、font-size、color、backgroud-color、font-weight
+- 支持更多组件
+- 支持更多style编辑
 - 美化界面样式
 

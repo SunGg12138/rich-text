@@ -7,7 +7,6 @@
       </div>
       <div ref="dom" class="dom"></div>
     </el-tooltip>
-
     <div class="focus" v-show="this.focus === this.index">编辑中...</div>
   </div>
 </template>
