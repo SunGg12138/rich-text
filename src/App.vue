@@ -4,21 +4,21 @@
       <el-main style="padding: 0;">
         <ToolsBar @add="add"></ToolsBar>
         <div style="text-align: center;">
-          <el-menu :default-active="view_active" class="el-menu-view" mode="horizontal" @select="handleSelect">
-            <el-menu-item index="view">视图</el-menu-item>
+          <el-menu :default-active="view_active" class="el-menu-view" mode="horizontal" @select="tabView">
+            <el-menu-item index="dom">视图</el-menu-item>
             <el-menu-item index="html">HTML</el-menu-item>
             <el-menu-item index="json">JSON</el-menu-item>
           </el-menu>
           <div class="container">
-            <div class="view" v-show="view_active === 'view'" style="padding: 10px;">
+            <div class="view-dom" v-show="view_active === 'dom'" style="padding: 10px;">
               <div v-for="(item, index) in modules" :key="index">
                 <Module :json="item" :index="index" :focus.sync="focus" @del="del"></Module>
               </div>
             </div>
-            <div class="html" v-show="view_active === 'html'">
+            <div class="view-html" v-show="view_active === 'html'">
               <el-input type="textarea" class="el-input-view" :disabled="true" v-model="html"></el-input>
             </div>
-            <div class="json" v-show="view_active === 'json'">
+            <div class="view-json" v-show="view_active === 'json'">
               <el-input type="textarea" class="el-input-view" :disabled="true" v-model="json"></el-input>
             </div>
           </div>
@@ -42,13 +42,13 @@ import Editor from '@/components/editor.vue';
 import Module from '@/components/module.vue';
 import ToolsBar from '@/components/toolsBar.vue';
 import Styles from '@/components/styles.vue';
-import tagJson from '@/lib/tagJson.js';
+import utils from '@/lib/utils.js';
 
 export default {
   name: "App",
   data () {
     return {
-      view_active: 'view',
+      view_active: 'dom',
       focus: null,
       html: '',
       json: '',
@@ -58,7 +58,7 @@ export default {
 
   created () {
     this.modules = [
-      tagJson('h2'), tagJson('p'), tagJson('img')
+      utils.createModule('h2'), utils.createModule('p'), utils.createModule('img')
     ];
   },
 
@@ -70,11 +70,11 @@ export default {
       this.modules.splice(_index, 1);
     },
     add (type) {
-      let json = tagJson(type);
+      let json = utils.createModule(type);
       this.modules.push(json);
     },
-
-    handleSelect (view) {
+    // 切换视图
+    tabView (view) {
       if (view === 'html') {
         this.html = documentfy({ name: 'div', children: this.modules }).innerHTML;
       } else if (view === 'json') {
@@ -85,10 +85,7 @@ export default {
   },
 
   components: {
-    Editor,
-    Module,
-    ToolsBar,
-    Styles
+    Editor, Module, ToolsBar, Styles
   }
 };
 </script>
@@ -119,7 +116,7 @@ export default {
   height: 30px;
   line-height: 30px;
 }
-.view, .html, .json {
+.view-dom, .view-html, .view-json {
   width: 320px;
   border-radius: 4px;
   box-sizing: border-box;

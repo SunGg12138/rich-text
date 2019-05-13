@@ -33,20 +33,20 @@ export default {
     },
     // 切换成编辑状态
     toEdit () {
-      switch (this.json.name) {
-        case 'h1':
-        case 'h2':
-        case 'h3':
-        case 'h4':
-        case 'h5':
-        case 'h6':
-        case 'p':
+      switch (this.json.attrs.class) {
+        case 'rick-text-h1':
+        case 'rick-text-h2':
+        case 'rick-text-h3':
+        case 'rick-text-h4':
+        case 'rick-text-h5':
+        case 'rick-text-h6':
+        case 'rick-text-p':
           this.editComponent = 'TextEditor';
           break;
-        case 'img':
+        case 'rick-text-img':
           this.editComponent = 'ImgEditor';
           break;
-        case 'imgs':
+        case 'rick-text-imgs':
           this.editComponent = 'ImgsEditor';
           break;
       }

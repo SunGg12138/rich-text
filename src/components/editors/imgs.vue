@@ -2,10 +2,10 @@
   <div>
     <Iframe>
       <div class="editor-title">图片地址：</div>
-      <el-input v-model="src1"></el-input>
-      <el-input v-model="src2"></el-input>
-      <el-input v-model="src3"></el-input>
-      <el-input v-model="src4"></el-input>
+      <el-input v-model="src1"><template slot="prepend">图1</template></el-input>
+      <el-input v-model="src2"><template slot="prepend">图2</template></el-input>
+      <el-input v-model="src3"><template slot="prepend">图3</template></el-input>
+      <el-input v-model="src4"><template slot="prepend">图4</template></el-input>
     </Iframe>
   </div>
 </template>
@@ -38,9 +38,18 @@ export default {
       deep: true
     },
 
-    src () {
+    src1 () {
       this.confirm();
-    }
+    },
+    src2 () {
+      this.confirm();
+    },
+    src3 () {
+      this.confirm();
+    },
+    src4 () {
+      this.confirm();
+    },
   },
 
   methods: {

@@ -1,10 +1,10 @@
 <template>
   <div class="styles">
-    <Margin :styles="styles" @change="change"></Margin>
-    <Padding :styles="styles" @change="change"></Padding>
-    <fontSize :styles="styles" @change="change"></fontSize>
-    <Color :styles="styles" @change="change"></Color>
-    <backgroundColor :styles="styles" @change="change"></backgroundColor>
+    <Margin :styles="styles" @change="change" v-show="styleModules.includes('margin')"></Margin>
+    <Padding :styles="styles" @change="change" v-show="styleModules.includes('padding')"></Padding>
+    <fontSize :styles="styles" @change="change" v-show="styleModules.includes('font-size')"></fontSize>
+    <Color :styles="styles" @change="change" v-show="styleModules.includes('color')"></Color>
+    <backgroundColor :styles="styles" @change="change" v-show="styleModules.includes('background-color')"></backgroundColor>
   </div>
 </template>
 
@@ -16,9 +16,11 @@ import Padding from './styles/padding.vue';
 import fontSize from './styles/font-size.vue';
 import Color from './styles/color.vue';
 import backgroundColor from './styles/background-color.vue';
+import settings from '@/settings'
 export default {
   data () {
     return {
+      styleModules: [],
       styles: {}
     };
   },
@@ -39,8 +41,10 @@ export default {
 
   methods: {
     init () {
-      if (!this.json || !this.json.attrs || !this.json.attrs.style) return;
+      if (!this.json || !this.json.attrs) return;
+      let moduleType = this.json.attrs['rick-text-type'];
       this.styles = style2json(this.json.attrs.style);
+      this.styleModules = settings.MODULES[moduleType].styles;
     },
 
     change (key, value) {

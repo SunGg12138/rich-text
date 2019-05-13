@@ -1,4 +1,4 @@
-function style2json(style){
+function style2json(style = ''){
   let ret = {};
 
   style = style.split(';');
