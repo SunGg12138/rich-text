@@ -12,6 +12,10 @@ function style2json(style){
     // 特殊属性处理
     special(k, v, ret);
   });
+
+  // 如果一些值没有，需要初始化值
+  initVal(ret);
+
   return ret;
 };
 
@@ -60,6 +64,21 @@ function specialVal (v, prefix, ret) {
     ret[prefix + 'Right'] = v[1];
     ret[prefix + 'Bottom'] = v[2];
     ret[prefix + 'Left'] = v[3];
+  }
+}
+
+function initVal (ret){
+  if (!ret.marginTop) {
+    special('margin', '0', ret);
+  }
+  if (!ret.paddingTop) {
+    special('padding', '0', ret);
+  }
+  if (!ret.color) {
+    ret.color = '#333333';
+  }
+  if (!ret.backgroundColor) {
+    ret.backgroundColor = '#ffffff';
   }
 }
 

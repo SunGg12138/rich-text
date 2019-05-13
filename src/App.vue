@@ -1,31 +1,35 @@
 <template>
   <div id="app">
     <el-container>
-      <el-main>
+      <el-main style="padding: 0;">
         <ToolsBar @add="add"></ToolsBar>
         <div style="text-align: center;">
-          <div id="container">
-            <div id="view">
+          <el-menu :default-active="view_active" class="el-menu-view" mode="horizontal" @select="handleSelect">
+            <el-menu-item index="view">视图</el-menu-item>
+            <el-menu-item index="html">HTML</el-menu-item>
+            <el-menu-item index="json">JSON</el-menu-item>
+          </el-menu>
+          <div class="container">
+            <div class="view" v-show="view_active === 'view'" style="padding: 10px;">
               <div v-for="(item, index) in modules" :key="index">
                 <Module :json="item" :index="index" :focus.sync="focus" @del="del"></Module>
               </div>
             </div>
+            <div class="html" v-show="view_active === 'html'">
+              <el-input type="textarea" class="el-input-view" :disabled="true" v-model="html"></el-input>
+            </div>
+            <div class="json" v-show="view_active === 'json'">
+              <el-input type="textarea" class="el-input-view" :disabled="true" v-model="json"></el-input>
+            </div>
           </div>
         </div>
       </el-main>
-      <el-aside width="400px">
+      <el-aside width="320px">
         <h2>组件编辑器</h2>
         <div v-show="focus == null" class="editor-title">选中组件后进行编辑...</div>
         <div v-show="focus != null">
           <Editor :json="modules[focus]" :focus="focus" @update="update"></Editor>
           <Styles :json="modules[focus]" :focus="focus" @update="update"></Styles>
-        </div>
-        <div class="export">
-          <div class="editor-title">导出：</div>
-          <div style="text-align: center">
-            <el-button size="mini" @click="spawnHtml">HTML</el-button>
-            <el-button size="mini" @click="spawnJson">JSON</el-button>
-          </div>
         </div>
       </el-aside>
     </el-container>
@@ -44,13 +48,18 @@ export default {
   name: "App",
   data () {
     return {
+      view_active: 'view',
       focus: null,
-      modules: [
-        { name: 'h2', attrs: { style: 'margin: 20px 0;font-size: 24px;' }, children: [ { type: 'text', text: '标题' } ] },
-        { name: 'p', attrs: { style: 'margin: 16px 0;font-size: 16px;' }, children: [ { type: 'text', text: '段落' } ] },
-        { name: 'img', attrs: { style: 'width: 100%;margin: 0;', src: '/static/images/image.png' } }
-      ]
+      html: '',
+      json: '',
+      modules: []
     };
+  },
+
+  created () {
+    this.modules = [
+      tagJson('h2'), tagJson('p'), tagJson('img')
+    ];
   },
 
   methods: {
@@ -65,12 +74,13 @@ export default {
       this.modules.push(json);
     },
 
-    spawnHtml () {
-      let domAll = documentfy({ name: 'div', children: this.modules });
-      console.log(domAll.innerHTML)
-    },
-    spawnJson () {
-      console.log(JSON.stringify(this.modules, null, 2));
+    handleSelect (view) {
+      if (view === 'html') {
+        this.html = documentfy({ name: 'div', children: this.modules }).innerHTML;
+      } else if (view === 'json') {
+        this.json = JSON.stringify(this.modules, null, 2);
+      }
+      this.view_active = view;
     }
   },
 
@@ -84,53 +94,44 @@ export default {
 </script>
 
 <style>
-body {
-  padding: 0;
-  margin: 0;
+#app {
+  height: 100%;
+}
+.el-container {
+  height: 100%;
 }
 .el-aside {
   position: relative;
   padding: 10px;
   border-left: 1px solid #eee;
+  background-color: #fff;
 }
-.table {
-  margin: 0 auto;
-  border-collapse: collapse;
-}
-.table .icon {
-  font-size: 20px;
-}
-.table td {
-  width: 54px;
-  height: 54px;
-  text-align: center;
-  border: 1px solid #eee;
-  cursor: pointer;
-  box-sizing: border-box;
-}
-.table td:hover {
-  color: #eb5648;
-}
-#container {
+.container {
   display: inline-block;
-  height: 667px;
+  height: 568px;
   overflow-y: auto;
 }
-#view {
-  width: 375px;
-  border: 1px solid #eee;
+.el-menu-view {
+  width: 320px;
+  margin: 0 auto;
+}
+.el-menu-view .el-menu-item {
+  height: 30px;
+  line-height: 30px;
+}
+.view, .html, .json {
+  width: 320px;
   border-radius: 4px;
-  padding: 10px;
   box-sizing: border-box;
-  min-height: 667px;
+  min-height: 568px;
   text-align: left;
   color: #000;
   font-size: 1rem;
+  background-color: #fff;
 }
-
-.tools-bar .table {
-  margin-bottom: 20px;
-  font-size: 12px;
+.el-input-view textarea {
+  height: 568px;
+  resize: none;
 }
 .export {
   width: 100%;

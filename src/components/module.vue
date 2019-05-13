@@ -1,9 +1,9 @@
 <template>
   <div class="module">
-    <el-tooltip class="item" effect="dark" placement="right">
+    <el-tooltip class="item" effect="light" placement="right">
       <div slot="content">
-        <el-button size="mini" type="info" round @click="toEdit">编辑</el-button>
-        <el-button size="mini" type="info" round @click="del">删除</el-button>
+        <el-button size="mini" type="primary" icon="el-icon-edit" circle @click="toEdit"></el-button>
+        <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="del"></el-button>
       </div>
       <div ref="dom" class="dom"></div>
     </el-tooltip>

@@ -1,21 +1,21 @@
 <template>
   <div class="editor-component">
-    <div class="editor-title">外边距（px）：</div>
+    <div class="editor-title">内边距（px）：</div>
     <div class="side">
       <label for="">上</label>
-      <input type="number" v-model="marginTop" @change="change('marginTop')">
+      <input type="number" v-model="paddingTop" @change="change('paddingTop')">
     </div>
     <div class="side">
       <label for="">右</label>
-      <input type="number" v-model="marginRight" @change="change('marginRight')">
+      <input type="number" v-model="paddingRight" @change="change('paddingRight')">
     </div>
     <div class="side">
       <label for="">下</label>
-      <input type="number" v-model="marginBottom" @change="change('marginBottom')">
+      <input type="number" v-model="paddingBottom" @change="change('paddingBottom')">
     </div>
     <div class="side">
       <label for="">左</label>
-      <input type="number" v-model="marginLeft" @change="change('marginLeft')">
+      <input type="number" v-model="paddingLeft" @change="change('paddingLeft')">
     </div>
   </div>
 </template>
@@ -24,10 +24,10 @@
 export default {
   data () {
     return {
-      marginTop: 0,
-      marginRight: 0,
-      marginBottom: 0,
-      marginLeft: 0
+      paddingTop: 0,
+      paddingRight: 0,
+      paddingBottom: 0,
+      paddingLeft: 0
     };
   },
 
@@ -47,10 +47,10 @@ export default {
 
   methods: {
     init () {
-      this.marginTop = parseInt(this.styles.marginTop);
-      this.marginRight = parseInt(this.styles.marginRight);
-      this.marginBottom = parseInt(this.styles.marginBottom);
-      this.marginLeft = parseInt(this.styles.marginLeft);
+      this.paddingTop = parseInt(this.styles.paddingTop);
+      this.paddingRight = parseInt(this.styles.paddingRight);
+      this.paddingBottom = parseInt(this.styles.paddingBottom);
+      this.paddingLeft = parseInt(this.styles.paddingLeft);
     },
     change (type) {
       this.$emit('change', type, this[type] + 'px');

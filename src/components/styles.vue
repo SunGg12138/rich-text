@@ -1,6 +1,10 @@
 <template>
   <div class="styles">
     <Margin :styles="styles" @change="change"></Margin>
+    <Padding :styles="styles" @change="change"></Padding>
+    <fontSize :styles="styles" @change="change"></fontSize>
+    <Color :styles="styles" @change="change"></Color>
+    <backgroundColor :styles="styles" @change="change"></backgroundColor>
   </div>
 </template>
 
@@ -8,6 +12,10 @@
 import style2json from '@/lib/style2json';
 import json2style from '@/lib/json2style';
 import Margin from './styles/margin.vue';
+import Padding from './styles/padding.vue';
+import fontSize from './styles/font-size.vue';
+import Color from './styles/color.vue';
+import backgroundColor from './styles/background-color.vue';
 export default {
   data () {
     return {
@@ -43,7 +51,7 @@ export default {
   },
 
   components: {
-    Margin
+    Margin, Padding, fontSize, Color, backgroundColor
   }
 }
 </script>

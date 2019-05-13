@@ -8,7 +8,7 @@
         </td>
         <td @click="add('p')">
           <i class="icon icon-font-size"></i>
-          <div>文字</div>
+          <div>段落</div>
         </td>
         <td @click="add('img')">
           <i class="icon icon-image"></i>
@@ -29,3 +29,33 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.tools-bar {
+  padding: 12px 0;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+.table .icon {
+  font-size: 20px;
+}
+.table td {
+  width: 54px;
+  height: 54px;
+  text-align: center;
+  border: 1px solid #eee;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.table td:hover {
+  color: #eb5648;
+}
+
+.tools-bar .table {
+  font-size: 12px;
+}
+</style>
