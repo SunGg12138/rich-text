@@ -1,6 +1,6 @@
 {
   "name": "vue-rich-text",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "针对小程序富文本标签<rich-text>的编辑器",
   "author": "SunGg12138 <961154209@qq.com>",
   "main": "src/index.js",
