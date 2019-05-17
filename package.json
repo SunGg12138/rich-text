@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "针对小程序富文本标签<rich-text>的编辑器",
   "author": "SunGg12138 <961154209@qq.com>",
-  "private": true,
   "main": "package/index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
