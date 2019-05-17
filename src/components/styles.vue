@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import style2json from '@/lib/style2json';
-import json2style from '@/lib/json2style';
+import style2json from '../lib/style2json';
+import json2style from '../lib/json2style';
 import Margin from './styles/margin.vue';
 import Padding from './styles/padding.vue';
 import fontSize from './styles/font-size.vue';
 import Color from './styles/color.vue';
 import backgroundColor from './styles/background-color.vue';
 import fontStyles from './styles/font-styles.vue';
-import settings from '@/settings'
+import settings from '../settings'
 export default {
   data () {
     return {

@@ -35,15 +35,15 @@
 </template>
 
 <script>
-import documentfy from '@/lib/documentfy';
-import Editor from '@/components/editor.vue';
-import Module from '@/components/module.vue';
-import ToolsBar from '@/components/toolsBar.vue';
-import Styles from '@/components/styles.vue';
-import utils from '@/lib/utils.js';
+import documentfy from './lib/documentfy';
+import Editor from './components/editor.vue';
+import Module from './components/module.vue';
+import ToolsBar from './components/toolsBar.vue';
+import Styles from './components/styles.vue';
+import utils from './lib/utils.js';
 
 export default {
-  name: "App",
+  name: "rick-text",
   data () {
     return {
       view_active: 'dom',
@@ -103,6 +103,14 @@ export default {
   display: inline-block;
   height: 568px;
   overflow-y: auto;
+}
+.editor-title {
+  font-size: 12px;
+  color: #999;
+  line-height: 30px;
+}
+.editor-component {
+  margin-bottom: 10px;
 }
 .el-menu-view {
   width: 320px;

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import documentfy from '@/lib/documentfy';
+import documentfy from '../lib/documentfy';
 export default {
   data () {
     return {
